@@ -14,7 +14,7 @@ export default function Home() {
       </Head>
 {/*       <Image src={GIF}></Image> */}
       <main className={styles.main}>
-        <h1 className={styles.title}><span className={styles.titleColor}>Ink Your Skin With Intelligence.</span></h1>
+        <h1 className={styles.title}><span className={styles.titleColor}>Create a One of a Kind AI Art piece</span></h1>
         <p className={styles.description}>
         </p>
         <span></span>
