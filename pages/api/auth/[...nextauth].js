@@ -47,7 +47,7 @@ export async function verifyPassword(password, hashedPassword) {
             password: {label: "Password", type:"password"},
           },
           authorize: async (credentials) => {
-            const user = await axios.post('https://www.atlastattoo.tech/api/credentials/login',
+            const user = await axios.post('https://atlas-decor-development.vercel.app/api/credentials/login',
             {
               user: {
                 password: credentials.password,
