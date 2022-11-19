@@ -10,17 +10,17 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Atlas Tattoo Development</title>
+        <title>Atlas Interior Development</title>
       </Head>
 {/*       <Image src={GIF}></Image> */}
       <main className={styles.main}>
-        <h1 className={styles.title}><span className={styles.titleColor}>Ink Your Skin With Intelligence.</span></h1>
+        <h1 className={styles.title}><span className={styles.titleColor}>Make your Home Smarter with AI Wall Decor!</span></h1>
         <p className={styles.description}>
         </p>
         <span></span>
         <Link href="/generate">
           <button className={styles.btn_neu}>
-          Generate</button>
+          Create</button>
         </Link>
       </main>
     </div>

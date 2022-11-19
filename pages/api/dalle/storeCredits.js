@@ -10,7 +10,7 @@ export default async (req, res) => {
       try {
         //establish connection
         const client = await clientPromise;
-        const db = client.db("Atlas_Tattoo");
+        const db = client.db("Atlas_Interior");
 
         const update = await db
         .collection("credits")

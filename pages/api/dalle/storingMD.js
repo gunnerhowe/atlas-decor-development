@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     };
 
         const client = await clientPromise;
-        const db = client.db("Atlas_Tattoo");
+        const db = client.db("Atlas_Interior");
 
         const result = await db
                 .collection("images")

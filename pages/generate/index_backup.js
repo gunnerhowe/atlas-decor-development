@@ -825,7 +825,7 @@ export default function Generate(credits) {
       const client = await clientPromise;
 
       //Specificially saying which DB to connect to
-      const db = client.db("Atlas_Tattoo");
+      const db = client.db("Atlas_Interior");
 
       //Example of retrieving a document from the db
       const credits = await db

@@ -13,13 +13,13 @@ export const config = {
 const loadIt = async (file) => {
 
     //const newData = await fetch(`https://www.atlastattoo.tech/api/dalle/storeCredits?email=${file.email}&name=${file.name}&payment_id=${file.payment_id}&credits=${file.credits}`);
-    const newData = await fetch(`https://www.atlastattoo.tech/api/dalle/storeCredits?email=${file.email}&name=${file.name}&payment_id=${file.payment_id}&credits=${file.credits}`);
+    const newData = await fetch(`https://atlas-decor-development.vercel.app/api/dalle/storeCredits?email=${file.email}&name=${file.name}&payment_id=${file.payment_id}&credits=${file.credits}`);
     const res = await newData.json();
     console.log(res);
     };
 
 const storeThem = async (file) => {
-  const user = await axios.post('https://www.atlastattoo.tech/api/credentials/signup',
+  const user = await axios.post('https://atlas-decor-development.vercel.app/api/credentials/signup',
     {
       email: file.email,
       name: file.name

@@ -5,7 +5,7 @@ export default async (req, res) => {
 
    try {
        const client = await clientPromise;
-       const db = client.db("Atlas_Tattoo");
+       const db = client.db("Atlas_Interior");
 
        const credits = await db
             .collection("credits")

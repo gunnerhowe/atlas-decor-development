@@ -11,7 +11,7 @@ const MENU_LIST = [
   { text: "Home", href: "/" },
   { text: "Gallery", href: "/gallery" },
   { text: "Services", href: "/services" },
-  { text: "Generate", href: "/generate" },
+  { text: "Create", href: "/generate" },
   { text: "Sign In", href: "/api/auth/signin" },
 ];
 
@@ -19,7 +19,7 @@ const MENU_LIST1 = [
   { text: "Home", href: "/" },
   { text: "Gallery", href: "/gallery" },
   { text: "Services", href: "/services" },
-  { text: "Generate", href: "/generate" },
+  { text: "Create", href: "/generate" },
   { text: "Profile", href: "/profile" },
   { text: "Sign Out", href: "/api/auth/signout" },
 ];
@@ -37,7 +37,7 @@ const Navbar = () => {
       <nav className={'nav'}>
         <Link href={"/"}>
           <a>
-            <h1 className="logo">Atlas Tattoo Development</h1>
+            <h1 className="logo">Atlas Interior Development</h1>
           </a>
         </Link>
         <div
