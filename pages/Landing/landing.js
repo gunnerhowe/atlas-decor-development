@@ -153,7 +153,7 @@ function rotateImagesTets() {
                     Leverage the newest technology in Artificial Intelligence to unleash your inner creativity
                 </h4>
                 <button className={styles.btn_neu}>
-                    Try
+                    Learn More
                 </button>
             </div>
             <div className={styles.carousel_container}>

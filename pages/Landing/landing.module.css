@@ -149,7 +149,7 @@
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
-/*     padding-top: 1850px; */
+    padding-top: 15px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -204,7 +204,8 @@
   .steps {
     color: rgba(255, 255, 255, .7);
     text-align: center;
-    height: 50px;
+    padding-top: 10px;
+/*     height: 50px; */
   }
 
   .step_sub {
@@ -223,6 +224,7 @@
     width: 90vw;
     justify-content: center;
     align-items: center;
+    height: 50px;
   }
 
   .options {
