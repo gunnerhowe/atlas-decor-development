@@ -5,7 +5,7 @@
     padding-right: 2rem; */
     display: flex;
     width: 100vw;
-    height: 100vh;
+/*     height: 100vh; */
     align-items: center;
     justify-content: center;
   }
@@ -23,7 +23,7 @@
   
 /*     box-shadow: 15px 15px 30px #bebebe,
                 -15px -15px 30px #ffffff; */
-    height: 100vh;
+/*     height: 100vh; */
 /*     padding: 1rem 1rem; */
   /*   flex: 1; */
     display: flex;
@@ -149,7 +149,7 @@
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
-    padding-top: 1850px;
+/*     padding-top: 1850px; */
     justify-content: center;
     align-items: center;
     text-align: center;
