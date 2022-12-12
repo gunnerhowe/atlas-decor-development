@@ -542,3 +542,10 @@
     font-size: 1.5rem;
     padding-top: 10px;
   }
+
+
+  .btn_neu_draw {
+/*     visibility: hidden; */
+    width: 100px;
+    height: 50px;
+  }

@@ -1,13 +1,20 @@
 import Head from 'next/head';
 import Navbar from "./components/Navbar";
-import '../styles/globals.css';
-import { SessionProvider } from 'next-auth/react'
+import styles from '../styles/globals.css';
+import { SessionProvider } from 'next-auth/react';
+import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const showNav = router.pathname ==='/Landing/landing' ? false: true;
+
+  
   return (
     <SessionProvider session={pageProps.session}>
         <>
+        {showNav && 
           <Navbar />
+        }
           <Component {...pageProps} />
         </>
     </SessionProvider>

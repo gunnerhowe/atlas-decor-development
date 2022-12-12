@@ -142,6 +142,8 @@ export default function Generate(credits) {
   const [imageUrl, setimageUrl] = useState("");
   const [IsUploadBtn, setIsUploadBtn] = useState(false);
   const [typeError, setTypeError] = useState(false);
+  const [FileURL, setFileURL] = useState(null)
+  const [useBase, setuseBase] = useState("")
 
   const inspire = ['synthwave sports car','a sea otter with a pearl earring by Johannes Vermeer','panda mad scientist mixing sparkling chemicals, digital art',
   'a stained glass window depicting a robot','abstract pencil and watercolor art of a lonely robot holding a balloon',
@@ -239,14 +241,30 @@ export default function Generate(credits) {
   'blue and purple ink sinking in water, 8k resolution','navy and gold ink drops sinking in water, 8k resolution','green ink sinking in water, 8k resolution','red ink sinking in water, 8k resolution','grey ink sinking in water, 8k resolution','black ink sinking in water, 8k resolution','tattoo stencil of sunglasses on a white background','a wolf skeleton, realistic','a panda sitting in a chair in the style a astronaut','a panda sitting in a chair in the style a princess','a panda sitting in a chair in the style a emperor','a panda sitting in a chair in the style a samurai','a panda sitting in a chair in the style a ninja','a panda sitting in a chair in the style a swimmer','a panda sitting in a chair in the style a software engineer','a panda sitting in a chair in the style a doctor','a panda sitting in a chair in the style a police','a panda sitting in a chair in the style a pirate','a panda sitting in a chair in the style of Santa','a panda sitting in a chair in the style a knight','Einstein wearing sun glasses, pop art and digital art','a German shepherded playing poker, pop art','Tiger wearing glasses playing poker in the style of digital art','A shark in the style of digital art','A butterfly in the style of Ivan Bilibin and digital art in the colors black and white','A wolf in the style of Ivan Bilibin and digital art','A lion in the style of Ivan Bilibin and digital art','a unicorn in the style of Toshi Yoshida','skeleton butterfly','A line art sketch of a dragon','A dragon in the style of Allison Kunath and digital art','A sketch of a dragon in the style of Ankit Kumar','A pen sketch of a dragon in the style of Allison kunath','A pencil sketch of a dragon','A sketch of a dragon with geometrical shapes','Intricate complex geometric sketch of a butterfly','Intricate geometric sketch of a wolf in the style of Allison Kunath','A geometric sketch of a lion in the style of Allison Kunath','A geometric pencil sketch of a dragon in the style of Allison Kunath','A geometric sketch of a dragon in grey and black color','Naruto in black and white colors in the style of Hiroshi Yoshida','An octopus holding a trident in the style realism in colors black and white','An octopus holding a trident in the style realism','Zeus in the style of digital art','cool tattoo in the style of Ivan Shishkin','cool tattoo in the style of Ghibli','cool tattoo in the style of Ivan Bilibin','cool tattoo in the style of Hiroshi Yoshida','cool tattoo in the style of Toshi Yoshida']
 
     //function to get the base64 image
-    const base = async (url) => {
+    const base = async (url, logText) => {
+      console.log(logText);
+      let newBase = await axios.post(`/api/dalle/download`, { url: url })
+        let base6 = await newBase.data.result
+
+        //const baseData = ('data:image/png;base64,' + base6);
+        //const buf = Buffer.from(baseData.replace(/^data:image\/\w+;base64,/, ""),'base64');
+
+        const buf = `data:application/octet-stream;base64,${base6}`
+
+        return buf
+    }
+
+    const base2 = async (url, logText) => {
+      console.log(logText);
       let newBase = await axios.post(`/api/dalle/download`, { url: url })
         let base6 = await newBase.data.result
 
         const baseData = ('data:image/png;base64,' + base6);
-        const buf = Buffer.from(baseData.replace(/^data:image\/\w+;base64,/, ""),'base64');
+        //const buf = Buffer.from(baseData.replace(/^data:image\/\w+;base64,/, ""),'base64');
 
-        return buf
+        //const buf = `data:application/octet-stream;base64,${base6}`
+
+        return baseData
     }
 
   const storeMD = async (url) => {
@@ -270,7 +288,8 @@ export default function Generate(credits) {
 
       //setglob_id(uuidv4());
 
-      let baseData = await base(file.url);
+      const logText = 'loading image from edit dalle'
+      let baseData = await base(file.url, logText);
 
       const getURL = await fetch("/api/dalle/s3").then(res => res.json());
       console.log(getURL)
@@ -349,6 +368,42 @@ const GetDalle2API = async () => {
     };
   }
 
+  
+  const EditDalleAPI = async (url) => {
+    if (selectedFile != "") {
+      setError(false);
+      setLoading(true);
+
+      //let baseData = await base(file.generation.image_path);
+
+      //const sendBase = 'data:image/png;base64,'+base64String 
+
+      const generate = await axios.post('/api/dalle/dalleEdit',{
+        url: url,
+        //file: selectedFile,
+        n: 1,
+        //size: "1024x1024",
+        prompt: "test",
+        user: session.user.email,
+        //base64: sendBase
+        //name: session.user.name
+    });
+      setResults(generate.data);
+      setIsUploadBtn(false);
+      //const files = (generate.data);
+      //startLoad(files);
+      setLoading(false);
+      setIsUploadBtn(true);
+      setstyle("");
+      setBackground("");
+      setselectedBackground("");
+      setselectedStyle("");
+      return generate.data
+    } else {
+      setError(true);
+    };
+  }
+
   //Download the generations
   function download(url) {
     axios
@@ -411,6 +466,7 @@ const GetDalle2API = async () => {
       let newJson = await newData.json();
     }
 
+
   const handleEvent = async () => {
 
     let jsonData = await getCredits(session.user.email);
@@ -444,12 +500,457 @@ const GetDalle2API = async () => {
 
       })
         const varImage = getURL.split('?')[0];
-        VarDalle2API(varImage);
+        //handleCrop(varImage);
+        EditDalleAPI(varImage);
+        //VarDalle2API(varImage);
     } else {
       setnoCred(true);
     }
   }
-  
+
+
+  const draw_image = async (trigger) => {
+    var canvas = document.getElementById('final_canvas');
+    var image1 = document.getElementById('test1');
+    var image = document.getElementById('test');
+    var ctx = canvas.getContext("2d");
+
+    if (trigger == '3:2') {
+/*       var image = ctx.getImageData(0, 0, 1536, 1024);
+      var imageData = image.data */
+        ctx.drawImage(image, 512,0,1024,1024);
+        ctx.drawImage(image1, 0,0,1024,1024);
+    }
+
+    if (trigger == '2:3') {
+      ctx.drawImage(image1, 0,0,1024,1024);
+      ctx.drawImage(image, 0,512,1024,1024);
+    }
+
+/*     const getBase = canvas.toDataURL('image/png')//.split(';base64,')[1];
+    const buf = Buffer.from(getBase.replace(/^data:image\/\w+;base64,/, ""),'base64'); */
+
+/*     const getURL = await fetch("/api/dalle/s3").then(res => res.json());
+    await fetch(getURL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": 'image/png',
+        "Content-Encoding": 'base64',
+        //"Content-Type": "multipart/form-data"
+      },
+      body: buf,
+    });
+
+    const varImage = getURL.split('?')[0]; */
+    //canvas.remove();
+  }
+
+  const create_canvas = async (width, height) => {
+    var final_can = document.createElement("canvas");
+    final_can.width = width;
+    final_can.height = height;
+    final_can.id = 'final_canvas';
+    document.body.appendChild(final_can);
+    var final_ctx = final_can.getContext('2d');
+    return 'done'
+  }
+
+  const setAlpha = async (trigger) => {
+    // get the image
+    var img = document.getElementById('test')
+    var img1 = document.getElementById('test1')
+
+    if (trigger == 'test') {
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      //remove right half and move left half over right half- good
+      ctx.drawImage(img, 256, 0);
+      var image = ctx.getImageData(0, 0, 256, 1024);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=(length); i > 0; i-=4){  
+        imageData[i] = 0;
+      } 
+      ctx.putImageData(image, 0, 0);
+    }
+
+    if (trigger == '3:2') {
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      //remove right half and move left half over right half- good
+      ctx.drawImage(img, 512, 0);
+      var image = ctx.getImageData(0, 0, 512, 1024);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=(length/2); i > 0; i-=4){  
+        imageData[i] = 0;
+      } 
+
+      ctx.putImageData(image, 0, 0);
+
+      const getBase = canvas.toDataURL('image/png')//.split(';base64,')[1];
+      const buf = Buffer.from(getBase.replace(/^data:image\/\w+;base64,/, ""),'base64');
+
+      const getURL = await fetch("/api/dalle/s3").then(res => res.json());
+      await fetch(getURL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": 'image/png',
+          "Content-Encoding": 'base64',
+          //"Content-Type": "multipart/form-data"
+        },
+        body: buf,
+
+      })
+        const varImage = getURL.split('?')[0];
+        canvas.remove();
+        const editDalle = await EditDalleAPI(varImage);
+
+        const useThis = editDalle[0]
+
+        const logText = 'converting for canvas'
+        const genBase = await base2(useThis.url, logText);
+        img1.src = genBase;
+
+        const makeIt = await create_canvas(1536, 1024);
+        if (makeIt == 'done') {
+          const drawIt = await draw_image('3:2');
+        }
+    }
+
+    if (trigger == '4:3-test') {
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      ctx.drawImage(img, 341, 0);
+      var image = ctx.getImageData(0, 0, 341, 1024);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=(length); i > 0; i-=4){  
+        imageData[i] = 0;
+      } 
+
+      ctx.putImageData(image, 0, 0);
+    }
+
+    if (trigger == '16:9-test') {
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      //remove right half and move left half over right half- good
+      ctx.drawImage(img, 796, 0);
+      var image = ctx.getImageData(0, 0, 796, 1024);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=(length); i > 0; i-=4){  
+        imageData[i] = 0;
+      } 
+      ctx.putImageData(image, 0, 0);
+    }
+
+    if (trigger == '5:4-test') {
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      //remove right half and move left half over right half- good
+      ctx.drawImage(img, 256, 0);
+      var image = ctx.getImageData(0, 0, 256, 1024);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=(length); i > 0; i-=4){  
+        imageData[i] = 0;
+      } 
+      ctx.putImageData(image, 0, 0);
+    }
+
+    if (trigger == '2:3') {
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      //remove top half
+      ctx.drawImage(img, 0, 0);
+      var image = ctx.getImageData(0, 0, 1024, 1024);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=0; i < length; i+=4){  
+        imageData[i] = imageData[(length/2)+i];
+      }
+      for (var i=1; i < length; i+=4){
+        imageData[i] = imageData[(length/2)+i];
+      }
+      for (var i=2; i < length; i+=4){
+        imageData[i] = imageData[(length/2)+i];
+      }
+      for (var i=(length/2)+3; i < length; i+=4){
+        imageData[i] = 0
+      } 
+
+      ctx.putImageData(image, 0, 0);
+
+      const getBase = canvas.toDataURL('image/png')//.split(';base64,')[1];
+      const buf = Buffer.from(getBase.replace(/^data:image\/\w+;base64,/, ""),'base64');
+
+      const getURL = await fetch("/api/dalle/s3").then(res => res.json());
+      await fetch(getURL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": 'image/png',
+          "Content-Encoding": 'base64',
+          //"Content-Type": "multipart/form-data"
+        },
+        body: buf,
+
+      })
+        const varImage = getURL.split('?')[0];
+        canvas.remove();
+        const editDalle = await EditDalleAPI(varImage);
+
+        const useThis = editDalle[0]
+
+        const logText = 'converting for canvas'
+        const genBase = await base2(useThis.url, logText);
+        img1.src = genBase;
+
+
+        const makeIt = await create_canvas(1024, 1536);
+        if (makeIt == 'done') {
+          const drawIt = await draw_image('3:2');
+    }
+  }
+
+    if (trigger == '3:4-test') {
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      //remove right half and move left half over right half- good
+      ctx.drawImage(img, 0, 341);
+      var image = ctx.getImageData(0, 0, 1024, 341);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=(length); i > 0; i-=4){  
+        imageData[i] = 0;
+      } 
+      ctx.putImageData(image, 0, 0);
+    }
+
+    if (trigger == '9:16-test') {
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      //remove right half and move left half over right half- good
+      ctx.drawImage(img, 0, 796);
+      var image = ctx.getImageData(0, 0, 1024, 796);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=(length); i > 0; i-=4){  
+        imageData[i] = 0;
+      } 
+      ctx.putImageData(image, 0, 0);
+    }
+
+    if (trigger == '4:5-test') {
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      //remove right half and move left half over right half- good
+      ctx.drawImage(img, 0, 256);
+      var image = ctx.getImageData(0, 0, 1024, 256);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=(length); i > 0; i-=4){  
+        imageData[i] = 0;
+      } 
+      ctx.putImageData(image, 0, 0);
+    }
+
+    if (trigger == '1:1') {
+
+    }
+
+    if (trigger == '1x2 -- dont use') {
+      // create and customize the canvas
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      //remove top half
+      ctx.drawImage(img, 0, 0);
+      var image = ctx.getImageData(0, 0, 1024, 1024);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=0; i < length; i+=4){  
+        imageData[i] = imageData[(length/2)+i];
+      }
+      for (var i=1; i < length; i+=4){
+        imageData[i] = imageData[(length/2)+i];
+      }
+      for (var i=2; i < length; i+=4){
+        imageData[i] = imageData[(length/2)+i];
+      }
+      for (var i=(length/2)+3; i < length; i+=4){
+        imageData[i] = 0
+      } 
+
+      ctx.putImageData(image, 0, 0);
+
+      const getBase = canvas.toDataURL('image/png')//.split(';base64,')[1];
+      const buf = Buffer.from(getBase.replace(/^data:image\/\w+;base64,/, ""),'base64');
+
+      const getURL = await fetch("/api/dalle/s3").then(res => res.json());
+      await fetch(getURL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": 'image/png',
+          "Content-Encoding": 'base64',
+          //"Content-Type": "multipart/form-data"
+        },
+        body: buf,
+
+      })
+        const varImage = getURL.split('?')[0];
+        canvas.remove();
+        const editDalle = await EditDalleAPI(varImage);
+
+        const useThis = editDalle[0]
+
+        const logText = 'converting for canvas'
+        const genBase = await base2(useThis.url, logText);
+        img1.src = genBase;
+
+
+        var final_can = document.createElement("canvas");
+        final_can.width = 1024;
+        final_can.height = 1536;
+        final_can.id = 'final_canvas';
+        document.body.appendChild(final_can);
+        await draw_image(0,0,1024,1024,0,512,1024,1024);
+        var button = document.getElementById('merge_images');
+        button.click();
+    }
+
+    if (trigger == '1x2 -- dont use') {
+      // create and customize the canvas
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      ctx.drawImage(img, 0, 512);
+      var image = ctx.getImageData(0, 0, 1024, 512);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=3; i < length; i+=4){  
+        imageData[i] = 0;
+      } 
+    }
+
+    //Expand top left corner - good
+/*     ctx.drawImage(img, 512, 512);
+    var image = ctx.getImageData(0, 0, 512, 512);
+    var imageData = image.data,
+    length = imageData.length;
+    for(var i=3; i < length; i+=4){  
+      imageData[i] = 0;
+    }  */
+
+    if (trigger == '2x1 -- dont use') {
+      var canvas = document.createElement("canvas");
+      canvas.width = 1024;
+      canvas.height = 1024;
+      canvas.id = 'canvas';
+      document.body.appendChild(canvas);
+      var ctx = canvas.getContext("2d")
+
+      //remove left half - good
+      ctx.drawImage(img, 512, 0);
+      var image = ctx.getImageData(0, 0, 512, 1024);
+      var imageData = image.data,
+      length = imageData.length;
+      for(var i=(length/2); i > 0; i-=4){  
+        imageData[i] = 0;
+      } 
+
+      ctx.putImageData(image, 0, 0);
+
+      const getBase = canvas.toDataURL('image/png')//.split(';base64,')[1];
+      const buf = Buffer.from(getBase.replace(/^data:image\/\w+;base64,/, ""),'base64');
+
+      const getURL = await fetch("/api/dalle/s3").then(res => res.json());
+      await fetch(getURL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": 'image/png',
+          "Content-Encoding": 'base64',
+          //"Content-Type": "multipart/form-data"
+        },
+        body: buf,
+
+      })
+        const varImage = getURL.split('?')[0];
+        canvas.remove();
+        const editDalle = await EditDalleAPI(varImage);
+
+        const useThis = editDalle[0]
+
+        const logText = 'converting for canvas'
+        const genBase = await base2(useThis.url, logText);
+        img1.src = genBase;
+
+
+        var final_can = document.createElement("canvas");
+        final_can.width = 1536;
+        final_can.height = 1024;
+        final_can.id = 'final_canvas';
+        document.body.appendChild(final_can);
+        await draw_image(0,0,1024,1024,512,0,1024,1024);
+        var button = document.getElementById('merge_images');
+        button.click();
+  }
+  }
+
 
 
   //Visual elements
@@ -482,7 +983,7 @@ const GetDalle2API = async () => {
                     </button>
                     <Link href='/profile/myGallery'>
                       <button className={classes.btn_neu_inspire}>
-                        Collection
+                        Design
                       </button>
                     </Link>
                   </div>
@@ -519,6 +1020,7 @@ const GetDalle2API = async () => {
                             const file = target.files[0];
                             setSelectedFile(file);
                             setIsUploadBtn(true);
+                            setFileURL(URL.createObjectURL(file));
                           }
                         }}
                         accept="image/png"
@@ -563,6 +1065,10 @@ const GetDalle2API = async () => {
                       }>
                       Generate
                     </button>
+                    <button className={classes.btn_neu} onClick={() => setAlpha('3:2')}>Test</button>
+                    <button id='merge_images' className={classes.btn_neu_draw} onClick={() => draw_image('3:2')}></button>
+                    <img src={URL.createObjectURL(selectedFile)} width='1024px' hieght='1024px' id='test'></img>
+                    <img src={URL.createObjectURL(selectedFile)} width='1024px' hieght='1024px' id='test1'></img>
                   </>)}
                   {typeError && (
                     <div className={classes.warning}>

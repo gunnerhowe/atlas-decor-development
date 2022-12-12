@@ -1,0 +1,301 @@
+.container {
+/*     padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-top: 2rem;
+    padding-right: 2rem; */
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .main {
+    width: 100vw;
+/*     border-radius: 30px; */
+/*     background: #e0e0e0; */
+  /*   background-image: url('/gallery/images/giphy.gif'); */
+  
+  /*   background-image: url('/gallery/images/giphy.gif');
+    background-repeat: repeat;
+    background-size: cover;
+    background-position: center; */
+  
+/*     box-shadow: 15px 15px 30px #bebebe,
+                -15px -15px 30px #ffffff; */
+    height: 100vh;
+/*     padding: 1rem 1rem; */
+  /*   flex: 1; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    padding-top: 0;
+   }
+  
+  
+  .titleColor {
+    color: purple;
+    z-index: 2;
+  }
+  
+  .title a {
+    color: purple;
+    text-decoration: none;
+    z-index: 2;
+  }
+  
+  .title a:hover,
+  .title a:focus,
+  .title a:active {
+    text-decoration: underline;
+    z-index: 2;
+  }
+  
+  .title {
+    margin: 0;
+    line-height: 1.15;
+    font-size: calc(1.5rem + 1vw);
+    z-index: 2;
+    color: purple;
+  }
+  
+  @media (min-width: 0px) {
+    .title { font-size: 1rem; 
+    z-index: 2;}
+  }
+  
+  @media (min-width: 300px) {
+    .title { font-size: calc(1.5rem + 1vw); 
+        z-index: 2;}
+  }
+  
+  @media (min-width: 1001px){
+    .title { font-size: 2rem; 
+        z-index: 2;}
+  }
+  
+  
+  
+  .error {
+    color: red;
+    font-weight: bold;
+    padding: 2rem;
+    background-color: #fad0e0;
+    border-radius: 5px;
+  }
+  
+  /*-----------Generate button----------------*/
+  .btn_neu body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: rgba(255, 255, 255, .7);
+  }
+  .btn_neu {
+    padding: 1.5em 5em;
+    /*background: #efefef;*/
+    background: rgba(255, 255, 255, .7);
+    border: none;
+    border-radius: .5rem;
+    color: #444;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .2rem;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    z-index: 1;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    transition: .2s ease-in-out;
+/*     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+                -6px -6px 10px rgba(255, 255, 255, .5),
+                6px 6px 8px rgba(255, 255, 255, .075),
+                6px 6px 10px rgba(0, 0, 0, .15); */
+  }
+/*   .btn_neu:hover {
+    box-shadow: -2px -2px 6px rgba(255, 255, 255, .6),
+                -2px -2px 4px rgba(255, 255, 255, .4),
+                2px 2px 2px rgba(255, 255, 255, .05),
+                2px 2px 4px rgba(0, 0, 0, .1);
+  }
+  .btn_neu:active {
+    box-shadow: inset -2px -2px 6px rgba(255, 255, 255, .7),
+                inset -2px -2px 4px rgba(255, 255, 255, .5),
+                inset 2px 2px 2px rgba(255, 255, 255, .075),
+                inset 2px 2px 4px rgba(0, 0, 0, .15);
+  } */
+
+  .header_section {
+    background-image: linear-gradient(black, rgb(56, 56, 56));
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 10px;
+    width: 100vw;
+/*     position: relative;
+    top: -8px; */
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main_h1 {
+    color: rgba(255, 255, 255, .7);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 1850px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 900;
+  }
+
+  .main_h4 {
+    color: rgba(255, 255, 255, .7);
+    padding-bottom: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: smaller;
+    text-align: center;
+  }
+
+  .carousel_container {
+    width: 100vw;
+    padding-top: 50px
+  }
+
+  .description {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .diclosure {
+    text-align: center;
+    font-size: smaller;
+  }
+
+  .form_fill_header {
+    text-align: center;
+    color: rgb(56, 56, 56);
+    padding-top: 50px;
+  }
+
+  .how_to {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+  }
+
+  .how_to_header {
+    color: rgb(56, 56, 56);
+    padding-bottom: 10px;
+    padding-top: 50px;
+  }
+
+  .steps {
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+    height: 50px;
+  }
+
+  .step_sub {
+    height: 50px;
+    text-align: center;
+    font-size: large;
+    font-weight: 700;
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+
+  .steps_div {
+/*     background-image: linear-gradient(black, rgb(56, 56, 56)); */
+    background-image: linear-gradient(rgb(127,0,255), rgb(63, 0, 255));
+    border-radius: 15px;
+    width: 90vw;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .options {
+    height: 200px;
+    width: 85vw;
+    background: linear-gradient(black 50%, rgb(56, 56, 56) 50%);
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .options_h4 {
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+    margin-top: 50px;
+    font-size: larger;
+  }
+
+  .horizontal {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .line {
+    width: 35vw;
+    height: 5px;
+    background: black;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .options_p {
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+    margin-top: 45px;
+  }
+
+  .submit_div {
+    display: flex;
+    flex-direction: row;
+    width: 85vw;
+    align-items: center;
+    justify-content: center;
+/*     background-image: linear-gradient(black, rgb(56, 56, 56)); */
+    border-radius: 15px;
+    height: 80px;
+  }
+
+  .confetti {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+/*     transform: rotate(90deg); */
+  }
+
+  .confetti_1 {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    transform: rotate(275deg);
+  }
+
+   .carousel_container_1 {
+    width: 100vw;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }

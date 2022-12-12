@@ -2,7 +2,11 @@ import axios from "axios";
 
 export default async function handler(req, res) {
 
+  console.log('starting base')
+
   const url = req.body.url;
+
+  console.log(url)
 
   const response = await axios.get(url, {
     responseType: "arraybuffer",

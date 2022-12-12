@@ -5,6 +5,9 @@ import Logo from "./Logo";
 import NavItem from "./NavItem";
 import {signIn, signOut, useSession} from 'next-auth/react';
 import CHECK from '../gallery/images/check.svg';
+import LOGO_BLACK from '../gallery/images/logo_black.svg';
+import LOGO_WHITE from '../gallery/images/logo_white.svg';
+
 
 
 const MENU_LIST = [
@@ -36,8 +39,9 @@ const Navbar = () => {
     <header>
       <nav className={'nav'}>
         <Link href={"/"}>
-          <a>
-            <h1 className="logo">Atlas Interior Development</h1>
+          <a className='logo_heading'>
+            <LOGO_BLACK className='panda_logo'></LOGO_BLACK>
+            <h1 className="logo">Panda Prints</h1>
           </a>
         </Link>
         <div

@@ -3,17 +3,19 @@ import { useState } from "react";
 import Link from 'next/link';
 import styles from "../styles/Home.module.css";
 import Image from 'next/image';
-import GIF from './gallery/images/giphy.gif';
+import LOGO_BLACK from './gallery/images/logo_black.svg';
+import LOGO_WHITE from './gallery/images/logo_white.svg';
 
 export default function Home() {
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Atlas Interior Development</title>
+        <title>Panda Prints</title>
       </Head>
 {/*       <Image src={GIF}></Image> */}
       <main className={styles.main}>
+         <LOGO_BLACK></LOGO_BLACK>
         <h1 className={styles.title}><span className={styles.titleColor}>Make your Home Smarter with AI Wall Decor!</span></h1>
         <p className={styles.description}>
         </p>

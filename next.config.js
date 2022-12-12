@@ -4,7 +4,7 @@ const nextConfig = {
   //reactStrictMode: false,
   images: {
     //domains: ['openailabsprodscus.blob.core.windows.net'],
-    domains: ['oaidalleapiprodscus.blob.core.windows.net', 'atlastattoo.s3.amazonaws.com'],
+    domains: ['oaidalleapiprodscus.blob.core.windows.net', 'atlastattoo.s3.amazonaws.com', 'images.printify.com'],
   },
   experimental: { 
     images: { allowFutureImage: true } ,

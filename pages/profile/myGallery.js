@@ -11,18 +11,8 @@ import Image from 'next/future/image';
 import axios from "axios";
 import Navbar from "./components/newNav";
 
-export default function GalleryPage({ images }) {
+export default function GalleryPage({ images}) {
   const { data: session, status} = useSession();
-/*   const [lastImage, setlastImage] = useState([]);
-  const [nextImages, setnextImages] = useState([]);
-  const [skipImages, setskipImages] = useState(1); */
-
-/*   function download(path) {
-    const link = document.createElement("a");
-    link.href = `${path}`;
-    link.download = `Atlas-Tattoo-Dev.png`;
-    link.click();
-  } */
 
   function download(url) {
     axios
@@ -39,29 +29,6 @@ export default function GalleryPage({ images }) {
   }
 
 
-/*   const seeMore = async () => {
-    let moreImages = await getMore(skipImages);
-    const addImages = moreImages.data
-
-    setnextImages(nextImages.concat(addImages));
-    setskipImages(Number(skipImages) + 1);
-
-  }
-
-
-  const getMore = async (skip) => {
-
-      try {
-        let newData = await axios.post('/api/dalle/getImages',{
-            email: session.user.email,
-            skip: skip
-        });
-
-        return newData;
-      } catch (err) {
-        console.log(err);
-      }};
- */
 
   return (
     <div className={styles.container}>
@@ -75,56 +42,35 @@ export default function GalleryPage({ images }) {
             </main>
           </>
         )}
-        {
-          session && (
-            <>
-            <main className={styles.main}>
-            <div className={styles.navbar_cont}>
-            </div>
-              <h1 className={styles.title}><span className={styles.titleColor}>{session.user.name}'s Gallery</span></h1>
-              <div className={styles.grid}>
-                {images.map((image) => {
-                  return (
-                      <div key={image._id} className={styles.card}>
-                          <Image 
-                            className={styles.imgPreview}
-                            src={image.image_path}
-                            width={300}
-                            height={300}
-                            quality={100}
-                            alt=''/>
-                          <button className={styles.btn_neu_download} onClick={() => download(image.image_path)}>
-                            <SVG className={styles.download_image}/>
-                          </button>     
-                      </div>
-                  );
-                })}
-{/*                 {nextImages.map((nextImage) => {
-                  return (
-                    <div key={nextImage._id} className={styles.card}>
-                      <Image 
-                        className={styles.imgPreview}
-                        src={nextImage.image_path}
-                        width={300}
-                        height={300}
-                        quality={100}
-                        alt=''/>
-                      <div>
-                        <button className={styles.btn_neu_download} onClick={() => download(nextImage.image_path)}>
-                          <SVG className={styles.download_image}/>
-                        </button>
-                      </div>        
-                    </div>
-                  );
-                })} */}
+          {session && (
+              <>
+              <main className={styles.main}>
+              <div className={styles.navbar_cont}>
               </div>
-{/*               <button className={styles.btn_neu_more} onClick={() => seeMore()}>
-                Load More
-              </button> */}
-        </main>
+                <h1 className={styles.title}><span className={styles.titleColor}>Select an Image</span></h1>
+                <div className={styles.grid}>
+                  {images.map((image) => {
+                    return (
+                        <div key={image._id} className={styles.card}>
+                            <Image 
+                              className={styles.imgPreview}
+                              src={image.image_path}
+                              width={300}
+                              height={300}
+                              quality={100}
+                              alt=''/>
+                            <div className={styles.button_container}>
+                              <button className={styles.btn_neu_download} onClick={() => download(image.image_path)}>
+                                <SVG className={styles.download_image}/>
+                              </button>
+                            </div>
+                        </div>
+                    );
+                  })}
+                </div>
+          </main>
         </>
-          )
-        }
+        )}
        <Navbar />
     </div>
   );
@@ -147,12 +93,11 @@ export async function getServerSideProps({req}) {
           .sort({_id: -1})
           //.limit(1)
           .toArray();
-          
+
       //returning the JSON strings so that they can be added to the UI in the above function
       return {
           props: { images: JSON.parse(JSON.stringify(images)) },
       };
-
   //Error catcher
   } catch (e) {
       console.error(e);
