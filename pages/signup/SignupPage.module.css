@@ -5,7 +5,7 @@
     padding-right: 2rem;
     display: flex;
     width: 100%;
-    height: 99vw;
+    height: 100%;
   }
   
   
@@ -15,7 +15,7 @@
     background: #e0e0e0;
     box-shadow: 15px 15px 30px #bebebe,
                 -15px -15px 30px #ffffff;
-    height: 80vh;
+    height: 85vh;
     padding: 1rem 1rem;
     margin-top: 20px;
     flex: 1;
@@ -259,3 +259,67 @@
                     inset 2px 2px 2px rgba(255, 255, 255, .075),
                     inset 2px 2px 4px rgba(0, 0, 0, .15);
       }
+
+  .third_party {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .btn_neu_third {
+    /*     padding: 1.5em 5em; */
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-right: 10px;
+        margin-left: 10px;
+        background: #e0e0e0;
+        border: none;
+        border-radius: .5rem;
+        color: #444;
+    /*     font-size: 1rem; */
+        width: 200px;
+        height: 55px;
+    /*     font-weight: 700;
+        letter-spacing: .2rem; */
+    /*     text-align: center; */
+        outline: none;
+        cursor: pointer;
+        transition: .2s ease-in-out;
+        box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+                    -6px -6px 10px rgba(255, 255, 255, .5),
+                    6px 6px 8px rgba(255, 255, 255, .075),
+                    6px 6px 10px rgba(0, 0, 0, .15);
+      }
+      .btn_neu_third:hover {
+        box-shadow: -2px -2px 6px rgba(255, 255, 255, .6),
+                    -2px -2px 4px rgba(255, 255, 255, .4),
+                    2px 2px 2px rgba(255, 255, 255, .05),
+                    2px 2px 4px rgba(0, 0, 0, .1);
+      }
+      .btn_neu_third:active {
+        box-shadow: inset -2px -2px 6px rgba(255, 255, 255, .7),
+                    inset -2px -2px 4px rgba(255, 255, 255, .5),
+                    inset 2px 2px 2px rgba(255, 255, 255, .075),
+                    inset 2px 2px 4px rgba(0, 0, 0, .15);
+      }
+
+  @media (max-width: 500px) {
+    .btn_neu_third {
+      width: 100px;
+    }
+  }
+
+  .google {
+    width: 40px;
+    height: 40px;
+  }
+
+  .facebook {
+    width: 200px;
+    height: 40px;
+  }
+
+  @media (max-width: 500px) {
+    .facebook {
+      width: 100px
+    }
+  }

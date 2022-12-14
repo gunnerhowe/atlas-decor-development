@@ -3,9 +3,11 @@ import { useState } from "react";
 import Link from 'next/link';
 import styles from "./SignupPage.module.css";
 import axios from "axios";
-import { signIn, useSession } from "next-auth/react";
 import OUT from '../gallery/images/sign_out.svg';
 import CHECK from '../gallery/images/check.svg';
+import GOOGLE from '../gallery/images/Google.svg';
+import FACEBOOK from '../gallery/images/Facebook.svg';
+import { getProviders, signIn, getSession, useSession } from "next-auth/react";
 
 export default function Home() {
   const { data: session, status} = useSession();
@@ -41,11 +43,11 @@ export default function Home() {
       setEmailError(false);
       setblankBlank(false);
     } else if (passWord == "") {
-      setpassBlank(true);
+      setblankBlank(true);
       setpassError(false);
       setEmailError(false);
     } else if (CpassWord == "" ) {
-      setpassBlank(true);
+      setblankBlank(true);
       setpassError(false);
       setEmailError(false);
     } else if (!updateData.data) {
@@ -113,6 +115,15 @@ export default function Home() {
             onChange={(e) => setCpassWord(e.target.value)}
           />
         </p>
+        <div className={styles.third_party}>
+          <button className={styles.btn_neu_third} onClick={() => signIn(providers.google.id)}>
+              <GOOGLE className={styles.google}></GOOGLE>
+          </button>
+
+          <button className={styles.btn_neu_third} onClick={() => signIn(providers.facebook.id)}>
+                <FACEBOOK className={styles.facebook}></FACEBOOK>
+          </button>
+        </div>
         {!success && (
           <button className={styles.btn_neu} onClick={() => {loadIt()}}>
             Submit
@@ -160,4 +171,11 @@ export default function Home() {
       )}
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const providers = await getProviders(context)
+  return {
+    props: { providers },
+  }
 }

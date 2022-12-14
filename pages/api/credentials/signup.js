@@ -12,6 +12,8 @@ export default async (req, res) => {
 
     const newName = newData.name
 
+    let currentDate = new Date().toJSON().slice(0, 10);
+
       try {
         //establish connection
         const client = await clientPromise;
@@ -26,7 +28,8 @@ export default async (req, res) => {
                 {
                     $set: {email: newData.email,
                             name: newName,
-                            password: password}
+                            password: password,
+                            date: currentDate},
                 },
                 {
                     upsert: true

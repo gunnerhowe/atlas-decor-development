@@ -3,6 +3,10 @@ import { useState } from "react";
 import Link from 'next/link';
 import styles from "./landing.module.css";
 import Image from 'next/image';
+import axios from 'axios';
+import OUT from '../gallery/images/sign_out.svg';
+import CHECK from '../gallery/images/check.svg';
+import { getProviders, signIn, getSession, useSession } from "next-auth/react";
 //import React from 'react';
 //import { Html, Head, Main, NextScript } from 'next/document'
 //import styles from './document.module.css';
@@ -23,13 +27,14 @@ import Banner2 from '/public/Banner2.svg'
 import Try1 from '/public/Try1.png'
 import Try2 from '/public/Try2.png'
 import Try3 from '/public/Try3.png'
+import Octopus from '/public/Octopus.svg'
+import LOGO_BLACK from '../gallery/images/logo_black.svg';
+import GOOGLE from '../gallery/images/Google.svg';
+import FACEBOOK from '../gallery/images/Facebook.svg';
 
 import CONFETTI from '../gallery/images/confetti.svg'
 
 export default function Document() {
-    const [gal, setGal] = useState(Image0);
-    const [galIndex, setGalIndex] = useState(0);
-
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [email, setEmail] = useState("");
@@ -40,56 +45,7 @@ export default function Document() {
     const [success, setSuccess] = useState(false);
     const [emailRes, setEmailRes] = useState([]);
     const [blankBlank, setblankBlank] = useState(false);
-
-    function rotateImages() {
-
-            if (typeof window !== "undefined") {
-                const Images = [Image0, Image1, Image2, Image3, Image4];
-                const image = document.getElementById('landing');
-
-                if (galIndex == 4) {
-                    //image.style = {transition: 'all ease-in-out 1000ms'}
-                    setGalIndex(0);
-                    setGal(Images[galIndex])
-                } else {
-                    //image.style = {transition: 'all ease-in-out 1000ms'}
-                    setGalIndex(galIndex + 1);
-                    setGal(Images[galIndex]);
-                }
-        }
-}
-
-function rotateImagesTets() {
-
-    if (typeof window !== "undefined") {
-        const Images = [Image0, Image1, Image2, Image3, Image4];
-        const image0 = document.getElementById('landing0');
-        const image1 = document.getElementById('landing1');
-        const image2 = document.getElementById('landing2');
-
-        setGalIndex(galIndex + 1);
-
-        if (galIndex == 2) {
-            image2.style == {visibility: 'hidden'};
-            image0.style == {visibility: 'visible'};
-            image0.style == {transition: 'all ease-in-out 1000ms'};
-            setGalIndex(0);
-        } else if (galIndex == 1) {
-            image1.style == {visibility: 'hidden'};
-            image2.style == {visibility: 'visible'};
-            image2.style == {transition: 'all ease-in-out 1000ms'};
-            //setGal(Images[galIndex])
-        } else if(galIndex == 0) {
-            image0.style == {visibility: 'hidden'};
-            image1.style == {visibility: 'visible'};
-            image1.style == {transition: 'all ease-in-out 1000ms'};
-        }
-}
-}
-
-    function performRotate() {
-        setTimeout(rotateImages, 5000)
-    }
+    const [showCar, setShowCar] = useState(false);
 
     const addUser = async () => {
         const name = (firstName + ' ' + lastName);
@@ -112,11 +68,11 @@ function rotateImagesTets() {
           setEmailError(false);
           setblankBlank(false);
         } else if (passWord == "") {
-          setpassBlank(true);
+          setblankBlank(true);
           setpassError(false);
           setEmailError(false);
         } else if (CpassWord == "" ) {
-          setpassBlank(true);
+          setblankBlank(true);
           setpassError(false);
           setEmailError(false);
         } else if (!updateData.data) {
@@ -135,6 +91,7 @@ function rotateImagesTets() {
           setblankBlank(false);
         }
       }
+
 //ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
   
 
@@ -145,125 +102,133 @@ function rotateImagesTets() {
         <title>Panda Prints</title>
     </Head>
         <main className={styles.main}>
-            <div className={styles.header_section}>
-                <h1 className={styles.main_h1}>
-                    Collaborate with AI to Design your Own Wall Decor
-                </h1>
-                <h4 className={styles.main_h4}>
-                    Leverage the newest technology in Artificial Intelligence to unleash your inner creativity
-                </h4>
-                <button className={styles.btn_neu}>
-                    Learn More
-                </button>
+            <div className={styles.logo_over}>
+                <LOGO_BLACK className={styles.logo_overlay}></LOGO_BLACK>
+                <div className={styles.header_section}>
+                    <h1 className={styles.main_h1}>
+                        Collaborate with AI to Design your Own Wall Decor
+                    </h1>
+                    <h4 className={styles.main_h4}>
+                        Leverage the newest technology in Artificial Intelligence to unleash your inner creativity
+                    </h4>
+                    <button className={styles.btn_neu}>
+                        Learn More
+                    </button>
+                </div>
             </div>
-            <div className={styles.carousel_container}>
-            <Carousel showArrows={true} centerMode={true} dynamicHeight={false} infiniteLoop={true} width={'100%'} showThumbs={false} showStatus={false} autoPlay={true}>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/image52.png"/>
-                </div> 
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/image49.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/image55.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/image56.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/image57.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/image58.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/Atlas-Tattoo-Dev+(21).png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/wall-2.jpg"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/wall-3.jpg"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/wall-4.jpg"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/mockup+(6).jpeg"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/mockup+(7).jpeg"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/mockup+(8).jpeg"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/mockup+(9).jpeg"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-12-07+20.59.01+-+abstract+black+and+white+modern+art.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/234.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.06.43+-+award+winning%2C+digital+art%2C+Mt+Olympus%2C+stunning%2C+8k%2C+high+definition.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.06.36+-+award+winning%2C+digital+art%2C+Mt+Olympus%2C+stunning%2C+8k%2C+high+definition.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.06.32+-+award+winning%2C+digital+art%2C+Mt+Olympus%2C+stunning%2C+8k%2C+high+definition.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.06.30+-+award+winning%2C+digital+art%2C+Mt+Olympus%2C+stunning%2C+8k%2C+high+definition.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.06.14+-+award+winning%2C+digital+art%2C+Atlantis%2C+stunning%2C+8k%2C+high+definition.png"/>
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.05.24+-+Digital+image+in+black+of+twisted+bonsai+tree+with+roots+on+white+background.png"/>
- 
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.35.42+-+abstract+art%2C+black+and+white.png"/>
- 
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.35.28+-+abstract+art%2C+black+and+white.png"/>
- 
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.35.18+-+abstract+art%2C+black+and+white.png"/>
- 
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.41+-+abstract+art%2C+black+and+white.png"/>
- 
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.25+-+abstract+art%2C+black+and+white.png"/>
- 
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.13+-+abstract+art%2C+black+and+white.png"/>
- 
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.20+-+abstract+art%2C+black+and+white.png"/>
- 
-                </div>
-                <div>
-                    <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.10+-+abstract+art%2C+black+and+white.png"/>
- 
-                </div>
-            </Carousel>
+            <div className={styles.testing}>
+                <Carousel showArrows={true} centerMode={false} dynamicHeight={false} infiniteLoop={true} width={'100%'} showThumbs={false} showStatus={false} autoPlay={true}>
+                        <div className={styles.carousel_image_test}>
+                            <img className={styles.svg_icon} src="https://atlastattoo.s3.amazonaws.com/Spike.svg"/>
+                        </div>
+                        <div className={styles.carousel_image_test}>
+                            <img className={styles.svg_icon} src="https://atlastattoo.s3.amazonaws.com/Octopus.svg"/>
+                        </div>
+                        <div className={styles.carousel_image_test}>
+                            <img className={styles.svg_icon} src="https://atlastattoo.s3.amazonaws.com/svg_1.svg"/>
+                        </div>
+                        <div className={styles.carousel_image_test}>
+                            <img className={styles.svg_icon} src="https://atlastattoo.s3.amazonaws.com/svg_2.svg"/>
+                        </div>
+                        <div className={styles.carousel_image_test}>
+                            <img className={styles.svg_icon} src="https://atlastattoo.s3.amazonaws.com/svg_3.svg"/>
+                        </div>
+                        <div className={styles.carousel_image_test}>
+                            <img className={styles.svg_icon} src="https://atlastattoo.s3.amazonaws.com/svg_4.svg"/>
+                        </div>
+                </Carousel>
             </div>
+            <div className={styles.carousel_container}> 
+                <Carousel showArrows={true} centerMode={false} dynamicHeight={false} infiniteLoop={true} width={'100%'} showThumbs={false} showStatus={false} autoPlay={true}>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/image52.png"/>
+                    </div> 
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/image49.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img  src="https://atlastattoo.s3.amazonaws.com/image55.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/image56.png"/>
+                    </div>
+{/*                     <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/image57.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/image58.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/Atlas-Tattoo-Dev+(21).png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/mockup+(6).jpeg"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/mockup+(7).jpeg"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/mockup+(8).jpeg"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/mockup+(9).jpeg"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-12-07+20.59.01+-+abstract+black+and+white+modern+art.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/234.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.06.43+-+award+winning%2C+digital+art%2C+Mt+Olympus%2C+stunning%2C+8k%2C+high+definition.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.06.36+-+award+winning%2C+digital+art%2C+Mt+Olympus%2C+stunning%2C+8k%2C+high+definition.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.06.32+-+award+winning%2C+digital+art%2C+Mt+Olympus%2C+stunning%2C+8k%2C+high+definition.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img  src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.06.30+-+award+winning%2C+digital+art%2C+Mt+Olympus%2C+stunning%2C+8k%2C+high+definition.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.06.14+-+award+winning%2C+digital+art%2C+Atlantis%2C+stunning%2C+8k%2C+high+definition.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-23+17.05.24+-+Digital+image+in+black+of+twisted+bonsai+tree+with+roots+on+white+background.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.35.42+-+abstract+art%2C+black+and+white.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.35.28+-+abstract+art%2C+black+and+white.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.35.18+-+abstract+art%2C+black+and+white.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.41+-+abstract+art%2C+black+and+white.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.25+-+abstract+art%2C+black+and+white.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.13+-+abstract+art%2C+black+and+white.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.20+-+abstract+art%2C+black+and+white.png"/>
+                    </div>
+                    <div className={styles.carousel_image}>
+                        <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.10+-+abstract+art%2C+black+and+white.png"/>
+                    </div> */}
+                </Carousel>
+             </div> 
              <h3 className={styles.form_fill_header}>Sign Up and claim your 3 free credits</h3>
              <form>
                 <p className={styles.description}>
                     <input
                         id="firstname"
+                        className={styles.input_form}
                         type="text"
                         placeholder="First Name"
                         onChange={(e) => setfirstName(e.target.value)}
@@ -272,6 +237,7 @@ function rotateImagesTets() {
                 <p className={styles.description}>
                     <input
                         id="lastname"
+                        className={styles.input_form}
                         type="text"
                         placeholder="Last Name"
                         onChange={(e) => setlastName(e.target.value)}
@@ -280,6 +246,7 @@ function rotateImagesTets() {
                 <p className={styles.description}>
                     <input
                         id="email"
+                        className={styles.input_form}
                         type="text"
                         placeholder="Email"
                         onChange={(e) => setEmail(e.target.value)}
@@ -288,6 +255,7 @@ function rotateImagesTets() {
                 <p className={styles.description}>
                     <input
                         id="password"
+                        className={styles.input_form}
                         type="password"
                         placeholder="Password"
                         onChange={(e) => setpassWord(e.target.value)}
@@ -296,14 +264,29 @@ function rotateImagesTets() {
                 <p className={styles.description}>
                     <input
                         id="password_confirm"
+                        className={styles.input_form}
                         type="password"
                         placeholder="Confirm Password"
                         onChange={(e) => setCpassWord(e.target.value)}
                     />
                 </p>
              </form>
+             <div className={styles.horizontal_1}>
+                <hr className={styles.line_1}></hr>
+                <h4>OR</h4>
+                <hr className={styles.line_1}></hr>
+            </div>
+            <div className={styles.third_party}>
+                <button className={styles.btn_neu_third} onClick={() => signIn(providers.google.id)}>
+                    <GOOGLE className={styles.google}></GOOGLE>
+                </button>
+
+                <button className={styles.btn_neu_third} onClick={() => signIn(providers.facebook.id)}>
+                    <FACEBOOK className={styles.facebook}></FACEBOOK>
+                </button>
+            </div>
              {!success && (
-                <button className={styles.btn_neu} onClick={() => {loadIt()}}>
+                <button className={styles.btn_neu_sub} onClick={() => {loadIt()}}>
                     Submit
                 </button>
             )}
@@ -343,25 +326,25 @@ function rotateImagesTets() {
                 </div>
                 <p className={styles.step_sub}>Select a Canvas from over a dozen choices</p>
                 <div className={styles.carousel_container_1}>
-                    <Carousel showArrows={true} centerMode={true} dynamicHeight={false} infiniteLoop={true} width={'100%'} showThumbs={false} showStatus={false} autoPlay={true}>
-                        <div>
-                            <img src="https://atlastattoo.s3.amazonaws.com/Framed_Canvas.jpeg"/>
+                    <Carousel className={styles.testing_carousel} showArrows={true} centerMode={true} dynamicHeight={false} infiniteLoop={true} width={'100%'} showThumbs={false} showStatus={false} autoPlay={true}>
+                        <div className={styles.carousel_image_1}>
+                            <img className={styles.svg_icon_1} src="https://atlastattoo.s3.amazonaws.com/Framed_Canvas.jpeg"/>
                             <p className="legend">Framed Canvas</p>
                         </div> 
-                        <div>
-                            <img src="https://atlastattoo.s3.amazonaws.com/Unframed_Canvas.jpeg"/>
+                        <div className={styles.carousel_image_1}>
+                            <img className={styles.svg_icon_1} src="https://atlastattoo.s3.amazonaws.com/Unframed_Canvas.jpeg"/>
                             <p className="legend">Canvas</p>
                         </div>
-                        <div>
-                            <img src="https://atlastattoo.s3.amazonaws.com/Tapestry.jpeg"/>
+                        <div className={styles.carousel_image_1}>
+                            <img className={styles.svg_icon_1} src="https://atlastattoo.s3.amazonaws.com/Tapestry.jpeg"/>
                             <p className="legend">Tapestry</p>
                         </div>
-                        <div>
-                            <img src="https://atlastattoo.s3.amazonaws.com/Framed_Poster.jpeg"/>
+                        <div className={styles.carousel_image_1}>
+                            <img className={styles.svg_icon_1} src="https://atlastattoo.s3.amazonaws.com/Framed_Poster.jpeg"/>
                             <p className="legend">Framed Posters</p>
                         </div>
-                        <div>
-                            <img src="https://atlastattoo.s3.amazonaws.com/Unframed_Poster.jpeg"/>
+                        <div className={styles.carousel_image_1}>
+                            <img className={styles.svg_icon_1} src="https://atlastattoo.s3.amazonaws.com/Unframed_Poster.jpeg"/>
                             <p className="legend">Posters</p>
                         </div>
                     </Carousel>
@@ -407,3 +390,10 @@ function rotateImagesTets() {
     </div>
   );
 }
+
+export async function getServerSideProps(context) {
+    const providers = await getProviders(context)
+    return {
+      props: { providers },
+    }
+  }
