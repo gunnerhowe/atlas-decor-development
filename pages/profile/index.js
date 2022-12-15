@@ -80,24 +80,30 @@ export default function ProfilePage( { credits, date } ) {
                 <USER className={styles.dollar_svg}></USER>
                 <h3 className={styles.section_header}>User Information</h3>
               </div>
-              <a className={styles.user_info}>Name: {session.user.name}</a>
-              <a className={styles.user_info}>Email: {session.user.email}</a>
-              <a className={styles.user_info}>Member Since: {date[0].date}</a>
+              <div className={styles.user_info_container}>
+                <h3 className={styles.user_info}>Name</h3>
+              </div>
+              <a className={styles.user_info_sub}>{session.user.name}</a>
+              <div className={styles.user_info_container}>
+                <h3 className={styles.user_info}>Email</h3>
+              </div>
+              <a className={styles.user_info_sub}>{session.user.email}</a>
+              <div className={styles.user_info_container}>
+                <h3 className={styles.user_info}>Member Since</h3>
+              </div>
+              <a className={styles.user_info_sub}>{date[0].date}</a>
             </div>
             <div className={styles.display_box}>
               <div className={styles.user_header}>
                 <DOLLAR className={styles.dollar_svg}></DOLLAR>
                 <h3 className={styles.section_header}>Credits</h3>
               </div>
+              <div className={styles.user_info_container}>
+                <h3 className={styles.user_info}>Current Credits</h3>
+              </div>
+              <a className={styles.user_info_sub}>{showCred()}</a>
               <Link href='/stripe'>
-                <button className={styles.btn_neu_creds}>
-                  <br />
-                  <a>Current Credits:</a>
-                  <br />
-                  <a>{showCred()}</a>
-                  <br />
-                  <br />
-                </button>
+                <button className={styles.btn_neu}>Buy More</button>
               </Link>
             </div>
             <div className={styles.display_box}>
@@ -105,10 +111,22 @@ export default function ProfilePage( { credits, date } ) {
                 <PACKAGE className={styles.dollar_svg}></PACKAGE>
                 <h3 className={styles.section_header}>Orders & Tracking</h3>
               </div>
-                <a className={styles.user_info}>Order: 9400111699004539549</a>
-                <a className={styles.user_info}>Carrier: USPS</a>
-                <a className={styles.user_info}>Estimated Delivery: 2022-12-25</a>
-                <a className={styles.user_info}>Track: http://example.com/9400111699004539549</a>
+              <div className={styles.user_info_container}>
+                <h3 className={styles.user_info}>Order</h3>
+              </div>
+              <a className={styles.user_info_sub}>9400111699004539549</a>
+              <div className={styles.user_info_container}>
+                <h3 className={styles.user_info}>Carrier</h3>
+              </div>
+              <a className={styles.user_info_sub}>USPS</a>
+              <div className={styles.user_info_container}>
+                <h3 className={styles.user_info}>Estimated Delivery</h3>
+              </div>
+              <a className={styles.user_info_sub}>2022-12-25</a>
+              <div className={styles.user_info_container}>
+                <h3 className={styles.user_info}>Track</h3>
+              </div>
+              <a className={styles.user_info_sub}>http://example.com/9400111699004539549</a>
             </div>
             <div className={styles.display_box}>
               <div className={styles.user_header}>
@@ -157,7 +175,7 @@ export default function ProfilePage( { credits, date } ) {
               </div>
             )}
           {!deletee && (
-            <div className={styles.display_box}>
+            <div className={styles.display_box_delete}>
               {!deleteComplete && (
               <button className={styles.btn_neu_Delete} onClick={() => setDeletee(true)}>
                 Delete Profile

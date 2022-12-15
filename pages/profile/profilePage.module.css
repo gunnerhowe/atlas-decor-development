@@ -5,7 +5,7 @@
     padding-right: 2rem; */
     display: flex;
     width: 98vw;
-    height: 90vh;
+    height: 100%;
     align-items: center;
     flex-direction: column;
     justify-content: center;
@@ -22,6 +22,8 @@
 
   .main {
     width: 95vw;
+    position: absolute;
+    top: 670px;
 /*     border-radius: 30px; */
 /*     background: #e0e0e0; */
 /*     box-shadow: 15px 15px 30px #bebebe,
@@ -30,7 +32,8 @@
               -5px -5px 10px #4d4b4b; */
 /*     box-shadow: 15px 15px 30px #8602ad,
               -15px -15px 30px #8602ad; */
-    height: 90vh;
+/*     height: 100%; */
+/*     margin-top: 600px; */
 /*     padding: 1rem 1rem; */
 /*     flex: 1; */
     display: flex;
@@ -43,13 +46,13 @@
    }
   
   
-  .titleColor {
+/*   .titleColor {
     color: rgb(7, 7, 7);
     font-size: 1.5rem;
     font-weight: bold;
-  }
+  } */
   
-  .title a {
+/*   .title a {
     color: #0a0a0a;
     text-decoration: none;
   }
@@ -77,12 +80,12 @@
   .title,
   .description {
     text-align: center;
-  }
+  } */
   
-  .logo {
+/*   .logo {
     height: 1em;
     margin-left: 0.5rem;
-  }
+  } */
   
 /*   @media (max-width: 600px) {
     .grid {
@@ -117,7 +120,7 @@
     margin-bottom: 1rem; */
     background: #e0e0e0;
     border: none;
-    border-radius: .5rem;
+    border-radius: 15px;
     color: #444;
     font-size: 1rem;
     font-weight: 700;
@@ -152,12 +155,13 @@
     background: #e0e0e0;
 /*     margin-bottom: 1rem; */
     border: none;
-    border-radius: .5rem;
+    border-radius: 15px;
     color: #444;
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: .1rem;
     margin-top: 20px;
+    margin-bottom: 20px;
 /*     width: 250px;
     height: 50px; */
     width: 300px;
@@ -204,7 +208,7 @@
     width: 250px;
     height: 75px;
     letter-spacing: .2rem;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     margin-top: 50px;
     text-align: center;
     outline: none;
@@ -235,12 +239,14 @@
 /*     flex: wrap; */
     width: 100vw;
     height: 80vh;
+    justify-content: center;
+    align-items: center;
   }
 
   .transfer_text {
     font-size: medium;
     width: calc(100vw - 15px);
-    margin-bottom: 1rem;
+    margin-bottom: 20px;
     text-align: center;
     margin-top: 20px;
   }
@@ -252,15 +258,54 @@
     flex-direction: column;
     border: #0a0a0a;
     border-color: #0a0a0a;
-    width: 100vw;
+    width: 90vw;
+    max-width: 1000px;
     justify-content: center;
     align-items: center;
+    border-radius: 30px;
+     background: #e0e0e0;
+     box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+     -6px -6px 10px rgba(255, 255, 255, .5),
+     6px 6px 8px rgba(255, 255, 255, .075),
+     6px 6px 10px rgba(0, 0, 0, .15);
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+
+  .display_box_delete {
+    display: flex;
+    flex-direction: column;
+    border: #0a0a0a;
+    border-color: #0a0a0a;
+    width: 90vw;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
 
   .user_info {
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+    padding-top: 10px;
+/*     height: 50px; */
+  }
+
+  .user_info_container {
+    background-color: rgb(56, 56, 56);
+    border-radius: 30px;
+    width: 90vw;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    max-width: 600px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .user_info_sub {
     font-size: larger;
-    font-weight: 700;
-    margin-top: 1rem;
+    margin-bottom: 20px;
   }
 
   .line {
@@ -278,7 +323,6 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-decoration: underline;
     font-size: 1.5rem;
-    margin-bottom: 10px
   }
 
 
@@ -383,8 +427,8 @@
 
 
    .btn_neu_transfer {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+        margin-top: 20px;
+        margin-bottom: 20px;
         background: #e0e0e0;
         border: none;
         border-radius: .5rem;
@@ -427,11 +471,13 @@
   .user_header {
     background-color:darkcyan;
     width: 90vw;
+    max-width: 1000px;
     height: 75px;
-    border-radius: 15px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
+/*     margin-top: 50px; */
   }
