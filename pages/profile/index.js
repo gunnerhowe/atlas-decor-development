@@ -8,8 +8,15 @@ import Navbar from "../profile/components/newNav";
 import clientPromise from "/lib/mongodb";
 import CHECK from '../gallery/images/check.svg';
 
+import PACKAGE from '../gallery/images/package.svg';
+import TRUCK from '../gallery/images/truck.svg';
+import USER from '../gallery/images/user.svg';
+import TRANSFER from '../gallery/images/transfer.svg';
+import DOLLAR from '../gallery/images/dollar.svg';
+import INFORMATION from '../gallery/images/information.svg';
 
-export default function ProfilePage( { credits } ) {
+
+export default function ProfilePage( { credits, date } ) {
   const { data: session, status} = useSession();
   const [curCred, setcurCred] = useState(credits[0]);
   const [query, setQuery] = useState("");
@@ -69,12 +76,19 @@ export default function ProfilePage( { credits } ) {
           <>
           <div className={styles.settings}>
             <div className={styles.display_box}>
-              <h3 className={styles.section_header}>User Information</h3>
+              <div className={styles.user_header}>
+                <USER className={styles.dollar_svg}></USER>
+                <h3 className={styles.section_header}>User Information</h3>
+              </div>
               <a className={styles.user_info}>Name: {session.user.name}</a>
               <a className={styles.user_info}>Email: {session.user.email}</a>
+              <a className={styles.user_info}>Member Since: {date[0].date}</a>
             </div>
-            <hr className={styles.line}></hr>
             <div className={styles.display_box}>
+              <div className={styles.user_header}>
+                <DOLLAR className={styles.dollar_svg}></DOLLAR>
+                <h3 className={styles.section_header}>Credits</h3>
+              </div>
               <Link href='/stripe'>
                 <button className={styles.btn_neu_creds}>
                   <br />
@@ -86,9 +100,21 @@ export default function ProfilePage( { credits } ) {
                 </button>
               </Link>
             </div>
-            <hr className={styles.line}></hr>
             <div className={styles.display_box}>
-            <h3 className={styles.section_header}>Transfer</h3>
+              <div className={styles.user_header}>
+                <PACKAGE className={styles.dollar_svg}></PACKAGE>
+                <h3 className={styles.section_header}>Orders & Tracking</h3>
+              </div>
+                <a className={styles.user_info}>Order: 9400111699004539549</a>
+                <a className={styles.user_info}>Carrier: USPS</a>
+                <a className={styles.user_info}>Estimated Delivery: 2022-12-25</a>
+                <a className={styles.user_info}>Track: http://example.com/9400111699004539549</a>
+            </div>
+            <div className={styles.display_box}>
+              <div className={styles.user_header}>
+                  <TRANSFER className={styles.dollar_svg}></TRANSFER>
+                  <h3 className={styles.section_header}>Transfer</h3>
+              </div>
               <a className={styles.transfer_text}>Transfer Credits to another account associated with a different Email</a>
               <input
                 id="query"
@@ -110,7 +136,6 @@ export default function ProfilePage( { credits } ) {
               </button>
               )}
             </div>
-            <hr className={styles.line}></hr>
             {deletee && (
               <div className={styles.display_box}>
                 <div className={styles.confirm_delete}>
@@ -172,11 +197,16 @@ export async function getServerSideProps({req}) {
           .toArray()
           //console.log(credits)
           //res.json(credits)
+
+      const date = await db
+          .collection("users")
+          .find({email: session.user.email})
+          .toArray()
           
       //returning the JSON strings so that they can be added to the UI in the above function
       return {
           //props: { credits: JSON.parse(JSON.stringify(credits)) },
-          props: {credits: JSON.parse(JSON.stringify(credits))}
+          props: {credits: JSON.parse(JSON.stringify(credits)), date: JSON.parse(JSON.stringify(date))}
       };
 
   //Error catcher

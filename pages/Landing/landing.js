@@ -223,7 +223,7 @@ export default function Document() {
                     </div> */}
                 </Carousel>
              </div> 
-             <h3 className={styles.form_fill_header}>Sign Up and claim your 3 free credits</h3>
+             <h2 className={styles.form_fill_header}>Sign Up and claim your 3 free credits</h2>
              <form>
                 <p className={styles.description}>
                     <input
@@ -320,7 +320,7 @@ export default function Document() {
             We're committed to your privacy. Panda Prints uses the information you provide to contact you about our relevant content, products, and services. You may unsubscribe from these communications at any time. For more information, check out our Privacy Policy
             </p>
             <div className={styles.how_to}>
-                <h3 className={styles.how_to_header}>It's as Easy as 1..2..3</h3>
+                <h1 className={styles.how_to_header}>It's as Easy as 1..2..3</h1>
                 <div className={styles.steps_div}>
                     <h2 className={styles.steps}>Step 1</h2>
                 </div>

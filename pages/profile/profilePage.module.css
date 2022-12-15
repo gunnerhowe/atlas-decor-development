@@ -4,7 +4,7 @@
     padding-top: 2rem;
     padding-right: 2rem; */
     display: flex;
-    width: 100vw;
+    width: 98vw;
     height: 90vh;
     align-items: center;
     flex-direction: column;
@@ -21,7 +21,7 @@
   } */
 
   .main {
-    width: 100vw;
+    width: 95vw;
 /*     border-radius: 30px; */
 /*     background: #e0e0e0; */
 /*     box-shadow: 15px 15px 30px #bebebe,
@@ -157,6 +157,7 @@
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: .1rem;
+    margin-top: 20px;
 /*     width: 250px;
     height: 50px; */
     width: 300px;
@@ -203,6 +204,8 @@
     width: 250px;
     height: 75px;
     letter-spacing: .2rem;
+    margin-bottom: 20px;
+    margin-top: 50px;
     text-align: center;
     outline: none;
     cursor: pointer;
@@ -239,6 +242,7 @@
     width: calc(100vw - 15px);
     margin-bottom: 1rem;
     text-align: center;
+    margin-top: 20px;
   }
 
 
@@ -249,7 +253,6 @@
     border: #0a0a0a;
     border-color: #0a0a0a;
     width: 100vw;
-    height: 100vh;
     justify-content: center;
     align-items: center;
   }
@@ -412,3 +415,23 @@
                     inset 2px 2px 2px rgba(255, 255, 255, .075),
                     inset 2px 2px 4px rgba(0, 0, 0, .15);
       }
+    
+
+  .dollar_svg {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+  }
+
+
+  .user_header {
+    background-color:darkcyan;
+    width: 90vw;
+    height: 75px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
