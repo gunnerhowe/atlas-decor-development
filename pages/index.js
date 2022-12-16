@@ -15,7 +15,7 @@ export default function Home() {
       </Head>
 {/*       <Image src={GIF}></Image> */}
       <main className={styles.main}>
-         <LOGO_BLACK></LOGO_BLACK>
+         <LOGO_BLACK className={styles.main_logo}></LOGO_BLACK>
         <h1 className={styles.title}><span className={styles.titleColor}>Make your Home Smarter with AI Wall Decor!</span></h1>
         <p className={styles.description}>
         </p>
