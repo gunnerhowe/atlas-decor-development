@@ -34,81 +34,78 @@ export default function PreviewPage() {
         </Head>
         {session && (
           <>
-          <div>
-            <h1 className={styles.main_title}>Credits</h1>
-          </div>
+{/*           <div className={styles.buy_header}>
+            <h1 className={styles.main_title}>Experience the future of art with AI-generated wall decor from Panda Prints</h1>
+            <h1 className={styles.main_title}>Bring your walls to life with AI-generated art!</h1>
+            <h1 className={styles.main_title}>Experience the future of home decor with our AI-powered wall art</h1>
+            <button className={styles.create}>Create</button>
+          </div> */}
           <section className={styles.section_stripe}>
             <form action="/api/prices/oneX" method="POST">
-              <div className={styles.container}>
-                <div>
-                  <h1 className={styles.title}>
-                    1x
-                  </h1>
+              <div className={styles.display_box}>
+                  <div className={styles.user_header}>
+                    <h3 className={styles.section_header}>1 Credit</h3>
+                  </div>
+                  <p className={styles.user_info_sub}>$5.00</p>
+                  <button className={styles.btn_neu} type="submit" role="link">
+                    Buy
+                  </button>
                 </div>
-                <button className={styles.btn_neu} type="submit" role="link">
-                  $5.00
-                </button>
-              </div>
               </form>
               <form action="/api/prices/fiveX" method="POST">
-              <div className={styles.container}>
-                <div>
-                  <h1 className={styles.title}>
-                    5x
-                  </h1>
+                <div className={styles.display_box}>
+                  <div className={styles.user_header}>
+                    <h3 className={styles.section_header}>5 Credits</h3>
+                  </div>
+                  <p className={styles.user_info_sub}>$24.00</p>
+                  <button className={styles.btn_neu} type="submit" role="link">
+                    Buy
+                  </button>
                 </div>
-                <button className={styles.btn_neu} type="submit" role="link">
-                  $24.00
-                </button>
-              </div>
               </form>
               <form action="/api/prices/tenX" method="POST">
-              <div className={styles.container}>
-                <div>
-                  <h1 className={styles.title}>
-                    10x
-                  </h1>
+                <div className={styles.display_box}>
+                  <div className={styles.user_header}>
+                    <h3 className={styles.section_header}>10 Credits</h3>
+                  </div>
+                  <p className={styles.user_info_sub}>$45.00</p>
+                  <button className={styles.btn_neu} type="submit" role="link">
+                    Buy
+                  </button>
                 </div>
-                <button className={styles.btn_neu} type="submit" role="link">
-                  $45.00
-                </button>
-              </div>
               </form>
               <form action="/api/prices/twenty-fiveX" method="POST">
-              <div className={styles.container}>
-                <div>
-                  <h1 className={styles.title}>
-                    25x
-                  </h1>
+                <div className={styles.display_box}>
+                  <div className={styles.user_header}>
+                    <h3 className={styles.section_header}>25 Credits</h3>
+                  </div>
+                  <p className={styles.user_info_sub}>$75.00</p>
+                  <button className={styles.btn_neu} type="submit" role="link">
+                    Buy
+                  </button>
                 </div>
-                <button className={styles.btn_neu} type="submit" role="link">
-                  $75.00
-                </button>
-              </div>
               </form>
               <form action="/api/prices/fiftyX" method="POST">
-              <div className={styles.container}>
-                <div>
-                  <h1 className={styles.title}>
-                    50x
-                  </h1>
+                <div className={styles.display_box}>
+                  <div className={styles.user_header}>
+                    <h3 className={styles.section_header}>50 Credits</h3>
+                  </div>
+                  <p className={styles.user_info_sub}>$200.00</p>
+                  <button className={styles.btn_neu} type="submit" role="link">
+                    Buy
+                  </button>
                 </div>
-                <button className={styles.btn_neu} type="submit" role="link">
-                  $200.00
-                </button>
-              </div>
               </form>
               <form action="/api/prices/hundredX" method="POST">
-              <div className={styles.container}>
-                <div>
-                  <h1 className={styles.title}>
-                    100x
-                  </h1>
+                <div className={styles.display_box}>
+                  <div className={styles.user_header}>
+                    <h3 className={styles.section_header}>100 Credits</h3>
+                  </div>
+                  <p className={styles.user_info_sub}>$300.00</p>
+                  <button className={styles.btn_neu} type="submit" role="link">
+                    Buy
+                  </button>
                 </div>
-                <button className={styles.btn_neu} type="submit" role="link">
-                  $300.00
-                </button>
-              </div>
               </form>
           </section>
           </>)}

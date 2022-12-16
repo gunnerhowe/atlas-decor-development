@@ -132,7 +132,7 @@
   } */
 
   .header_section {
-    background-image: linear-gradient(black, rgb(56, 56, 56));
+    background-image: linear-gradient(rgb(56, 56, 56), teal);
     margin: 0px;
     padding: 0px;
     padding-bottom: 10px;
@@ -342,7 +342,7 @@
 
   .steps_div {
 /*     background-image: linear-gradient(black, rgb(56, 56, 56)); */
-    background-image: linear-gradient(rgb(127,0,255), rgb(63, 0, 255));
+    background-color: teal;
     border-radius: 15px;
     width: 90vw;
     justify-content: center;

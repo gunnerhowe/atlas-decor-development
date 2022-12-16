@@ -14,6 +14,7 @@ import USER from '../gallery/images/user.svg';
 import TRANSFER from '../gallery/images/transfer.svg';
 import DOLLAR from '../gallery/images/dollar.svg';
 import INFORMATION from '../gallery/images/information.svg';
+import ARROW from '../gallery/images/arrow.svg';
 
 
 export default function ProfilePage( { credits, date } ) {
@@ -74,7 +75,6 @@ export default function ProfilePage( { credits, date } ) {
         )}
       {session && (
           <>
-          <div className={styles.settings}>
             <div className={styles.display_box}>
               <div className={styles.user_header}>
                 <USER className={styles.dollar_svg}></USER>
@@ -83,15 +83,15 @@ export default function ProfilePage( { credits, date } ) {
               <div className={styles.user_info_container}>
                 <h3 className={styles.user_info}>Name</h3>
               </div>
-              <a className={styles.user_info_sub}>{session.user.name}</a>
+              <p className={styles.user_info_sub}>{session.user.name}</p>
               <div className={styles.user_info_container}>
                 <h3 className={styles.user_info}>Email</h3>
               </div>
-              <a className={styles.user_info_sub}>{session.user.email}</a>
+              <p className={styles.user_info_sub}>{session.user.email}</p>
               <div className={styles.user_info_container}>
                 <h3 className={styles.user_info}>Member Since</h3>
               </div>
-              <a className={styles.user_info_sub}>{date[0].date}</a>
+              <p className={styles.user_info_sub}>{date[0].date}</p>
             </div>
             <div className={styles.display_box}>
               <div className={styles.user_header}>
@@ -101,7 +101,7 @@ export default function ProfilePage( { credits, date } ) {
               <div className={styles.user_info_container}>
                 <h3 className={styles.user_info}>Current Credits</h3>
               </div>
-              <a className={styles.user_info_sub}>{showCred()}</a>
+              <p className={styles.user_info_sub}>{showCred()}</p>
               <Link href='/stripe'>
                 <button className={styles.btn_neu}>Buy More</button>
               </Link>
@@ -114,26 +114,36 @@ export default function ProfilePage( { credits, date } ) {
               <div className={styles.user_info_container}>
                 <h3 className={styles.user_info}>Order</h3>
               </div>
-              <a className={styles.user_info_sub}>9400111699004539549</a>
+              <p className={styles.user_info_sub}>9400111699004539549</p>
               <div className={styles.user_info_container}>
                 <h3 className={styles.user_info}>Carrier</h3>
               </div>
-              <a className={styles.user_info_sub}>USPS</a>
+              <p className={styles.user_info_sub}>USPS</p>
               <div className={styles.user_info_container}>
                 <h3 className={styles.user_info}>Estimated Delivery</h3>
               </div>
-              <a className={styles.user_info_sub}>2022-12-25</a>
-              <div className={styles.user_info_container}>
-                <h3 className={styles.user_info}>Track</h3>
+              <p className={styles.user_info_sub}>2022-12-25</p>
+              <Link href={'http://example.com/9400111699004539549'}>
+                <button className={styles.btn_neu_transfer}>
+                  Track
+                </button>
+              </Link>
+              <div className={styles.tracking_page}>
+                <button className={styles.tracking_btn}>
+                  <ARROW className={styles.prev_arrow}></ARROW>
+                </button>
+                <p className={styles.tracking_num}>1 of 10</p>
+                <button className={styles.tracking_btn}>
+                  <ARROW className={styles.next_arrow}></ARROW>
+                </button>
               </div>
-              <a className={styles.user_info_sub}>http://example.com/9400111699004539549</a>
             </div>
             <div className={styles.display_box}>
               <div className={styles.user_header}>
                   <TRANSFER className={styles.dollar_svg}></TRANSFER>
                   <h3 className={styles.section_header}>Transfer</h3>
               </div>
-              <a className={styles.transfer_text}>Transfer Credits to another account associated with a different Email</a>
+              <p className={styles.transfer_text}>Transfer Credits to another account associated with a different Email</p>
               <input
                 id="query"
                 type="text"
@@ -189,7 +199,6 @@ export default function ProfilePage( { credits, date } ) {
               )}
             </div>
             )}
-        </div>
       </>
         )}
       </main>
