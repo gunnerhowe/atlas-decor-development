@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import Link from 'next/link';
-import styles from "./landing.module.css";
+import styles from "./Landing.module.css";
 import Image from 'next/image';
 import axios from 'axios';
 import OUT from '../gallery/images/sign_out.svg';
