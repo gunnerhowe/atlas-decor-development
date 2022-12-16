@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
-  const showNav = router.pathname ==='/landing/landing' ? false: true;
+  const showNav = router.pathname ==='/Landing/landing' ? false: true;
 
   
   return (
