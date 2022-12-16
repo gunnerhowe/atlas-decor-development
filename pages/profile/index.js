@@ -112,9 +112,16 @@ export default function ProfilePage( { credits, date } ) {
                 <h3 className={styles.section_header}>Orders & Tracking</h3>
               </div>
               <div className={styles.user_info_container}>
-                <h3 className={styles.user_info}>Order</h3>
+                <h3 className={styles.user_info}>Order Number</h3>
               </div>
               <p className={styles.user_info_sub}>9400111699004539549</p>
+              <div className={styles.user_info_container}>
+                <h3 className={styles.user_info}>Description</h3>
+              </div>
+              <div className={styles.order_item}>
+                <img src='https://atlastattoo.s3.amazonaws.com/Framed_Canvas.jpeg' width='100px' height='100px'></img>
+                <p className={styles.item_description}>40" X 30" Framed Poster</p>
+              </div>
               <div className={styles.user_info_container}>
                 <h3 className={styles.user_info}>Carrier</h3>
               </div>

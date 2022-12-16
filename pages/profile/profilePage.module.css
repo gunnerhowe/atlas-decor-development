@@ -550,3 +550,32 @@
     width: 100px;
     text-align: center;
   }
+
+  .order_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 600px) {
+    .order_item {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .item_description {
+    font-size: 100%;
+    margin-bottom: 20px;
+    max-width: 800px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  @media (min-width: 600px) {
+    .item_description {
+      margin-left: 10px;
+    }
+  }
