@@ -294,7 +294,7 @@
     text-align: center;
     color: rgb(56, 56, 56);
     padding-top: 50px;
-    width: 500px
+    width: 90vw;
   }
 
   @media (max-width: 361px) {

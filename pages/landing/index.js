@@ -16,18 +16,6 @@ import ReactDOM from 'react-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
-import Image0 from '../gallery/images/Canvas_1.png'
-import Image1 from '../gallery/images/Canvas_2.png'
-import Image2 from '../gallery/images/Canvas_3.png'
-import Image3 from '../gallery/images/Canvas_4.png'
-import Image4 from '../gallery/images/Canvas_5.png'
-import Banner from '/public/Banner.svg'
-import Banner1 from '/public/Banner1.svg'
-import Banner2 from '/public/Banner2.svg'
-import Try1 from '/public/Try1.png'
-import Try2 from '/public/Try2.png'
-import Try3 from '/public/Try3.png'
-import Octopus from '/public/Octopus.svg'
 import LOGO_BLACK from '../gallery/images/logo_black.svg';
 import GOOGLE from '../gallery/images/Google.svg';
 import FACEBOOK from '../gallery/images/Facebook.svg';
