@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Navbar from "./components/Navbar";
 import styles from '../styles/globals.css';
 import { SessionProvider } from 'next-auth/react';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -12,6 +12,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <SessionProvider session={pageProps.session}>
         <>
+        <Head>
+          <link rel="shortcut icon" href='/favicon.svg'></link>
+        </Head>
         {showNav && 
           <Navbar />
         }
