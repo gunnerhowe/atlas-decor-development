@@ -246,10 +246,10 @@ export default function Generate(credits) {
       let newBase = await axios.post(`/api/dalle/download`, { url: url })
         let base6 = await newBase.data.result
 
-        //const baseData = ('data:image/png;base64,' + base6);
-        //const buf = Buffer.from(baseData.replace(/^data:image\/\w+;base64,/, ""),'base64');
+        const baseData = ('data:image/png;base64,' + base6);
+        const buf = Buffer.from(baseData.replace(/^data:image\/\w+;base64,/, ""),'base64');
 
-        const buf = `data:application/octet-stream;base64,${base6}`
+        //const buf = `data:application/octet-stream;base64,${base6}`
 
         return buf
     }
