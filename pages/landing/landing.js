@@ -22,7 +22,7 @@ import FACEBOOK from '../gallery/images/Facebook.svg';
 
 import CONFETTI from '../gallery/images/confetti.svg'
 
-export default function Document() {
+export default function Landing() {
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [email, setEmail] = useState("");
