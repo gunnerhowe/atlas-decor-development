@@ -5,6 +5,11 @@ import styles from "../styles/Home.module.css";
 import Image from 'next/image';
 import LOGO_BLACK from './gallery/images/logo_black.svg';
 import LOGO_WHITE from './gallery/images/logo_white.svg';
+import AI from './gallery/images/ai.svg';
+import CREATIVE from './gallery/images/creative.svg';
+import QUALITY from './gallery/images/quality.svg';
+import UNIQUE from './gallery/images/unique.svg';
+import NEWS from './gallery/images/news.svg';
 
 export default function Home() {
 
@@ -20,23 +25,23 @@ export default function Home() {
           <button className={styles.main_container_button}>Get Started</button>
           <button className={styles.main_container_button}>Learn More</button>
         </div>
-        <LOGO_BLACK className={styles.main_logo}></LOGO_BLACK>
+        <AI className={styles.main_logo}></AI>
       </div>
 
       <div className={styles.main_grid_container}>
         <div className={styles.main_grid}>
           <div className={styles.main_grid_card}>
-            <LOGO_BLACK className={styles.main_grid_svg}></LOGO_BLACK>
+            <CREATIVE className={styles.main_grid_svg_creative}></CREATIVE>
             <h2 className={styles.main_grid_h2}>Creative</h2>
             <p className={styles.main_grid_p}>Leverage AI to express yourself. Panda Prints allows you to generate any image that you can come up with. No boundry can contain your imagination</p>
           </div>
           <div className={styles.main_grid_card}>
-            <LOGO_BLACK className={styles.main_grid_svg}></LOGO_BLACK>
+            <QUALITY className={styles.main_grid_svg}></QUALITY>
             <h2 className={styles.main_grid_h2}>Quality</h2>
             <p className={styles.main_grid_p}>All images can scale up and maintain outstanding quality. All images generated are converted to SVG format before being placed on the canvas of your choosing</p>
           </div>
           <div className={styles.main_grid_card}>
-            <LOGO_BLACK className={styles.main_grid_svg}></LOGO_BLACK>
+            <UNIQUE className={styles.main_grid_svg}></UNIQUE>
             <h2 className={styles.main_grid_h2}>Unique</h2>
             <p className={styles.main_grid_p}>Each piece is one of a kind and will never be seen anywhere else. Even if you enter the same prompt, it will always generate something new</p>
           </div>
@@ -54,27 +59,27 @@ export default function Home() {
             <div className={styles.second_container_items}>
               <ul className={styles.second_container_list}>
                 <li className={styles.second_container_list_item}>
-                  <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK>
+{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   Advanced caching
                 </li>
                 <li className={styles.second_container_list_item}>
-                  <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK>
+{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   Unlimited applications
                 </li>
                 <li className={styles.second_container_list_item}>
-                  <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK>
+{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   PHP 7 ready transfer
                 </li>
                 <li className={styles.second_container_list_item}>
-                  <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK>
+{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   PHP ready serves
                 </li>
                 <li className={styles.second_container_list_item}>
-                  <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK>
+{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   24/7 Free extra support
                 </li>
                 <li className={styles.second_container_list_item}>
-                  <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK>
+{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   Optimized stack
                 </li>
               </ul>
@@ -89,7 +94,7 @@ export default function Home() {
           <input className={styles.newsletter_input} placeholder=' Email'></input>
           <button className={styles.newsletter_input_button}>Subscribe</button>
         </div>
-        <LOGO_BLACK className={styles.newsletter_svg}></LOGO_BLACK>
+        <NEWS className={styles.newsletter_svg}></NEWS>
         <h2 className={styles.newsletter_container_h2}>Sign Up To The Free Newsletter</h2>
         <h2 className={styles.newsletter_container_h2}>501-288-2488</h2>
       </div>
