@@ -989,6 +989,7 @@ const GetDalle2API = async () => {
                   </div>
                     <input
                       id="query"
+                      className={classes.tattoo_input}
                       type="text"
                       value={query}
                       onChange={(e) => {setQuery(e.target.value)}}

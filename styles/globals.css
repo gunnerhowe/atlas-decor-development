@@ -28,12 +28,12 @@ a {
   font-size: medium;
   font-weight: bold;
   width: 75vw;
- }
+ } */
  
 input:focus {
   outline-color: white;
   place-content: "Enter your message!";
- } */
+ } 
 
 /*below here*/
 
