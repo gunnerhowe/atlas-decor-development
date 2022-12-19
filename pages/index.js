@@ -14,6 +14,7 @@ import NEWS from './gallery/images/news.svg';
 export default function Home() {
 
   return (
+
     <div className={styles.container}>
       <Head>
         <title>Panda Prints</title>
@@ -26,7 +27,7 @@ export default function Home() {
           <button className={styles.main_container_button}>Learn More</button>
         </div>
         <AI className={styles.main_logo}></AI>
-      </div>
+      </div> 
 
       <div className={styles.main_grid_container}>
         <div className={styles.main_grid}>
@@ -46,7 +47,7 @@ export default function Home() {
             <p className={styles.main_grid_p}>Each piece is one of a kind and will never be seen anywhere else. Even if you enter the same prompt, it will always generate something new</p>
           </div>
         </div>
-      </div>
+      </div> 
 
       <div className={styles.second_container}>
           <LOGO_BLACK className={styles.second_container_img}></LOGO_BLACK>
@@ -59,34 +60,28 @@ export default function Home() {
             <div className={styles.second_container_items}>
               <ul className={styles.second_container_list}>
                 <li className={styles.second_container_list_item}>
-{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   Advanced caching
                 </li>
                 <li className={styles.second_container_list_item}>
-{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   Unlimited applications
                 </li>
                 <li className={styles.second_container_list_item}>
-{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   PHP 7 ready transfer
                 </li>
                 <li className={styles.second_container_list_item}>
-{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   PHP ready serves
                 </li>
                 <li className={styles.second_container_list_item}>
-{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   24/7 Free extra support
                 </li>
                 <li className={styles.second_container_list_item}>
-{/*                   <LOGO_BLACK className={styles.second_container_list_svg}></LOGO_BLACK> */}
                   Optimized stack
                 </li>
               </ul>
             </div>
             <button className={styles.second_container_button}>Learn More</button>
           </div>
-      </div>
+      </div> 
 
       <div className={styles.newsletter_container}>
         <h1 className={styles.newsletter_container_h1}>Sign Up To The Free Newsletter</h1>
@@ -98,24 +93,7 @@ export default function Home() {
         <h2 className={styles.newsletter_container_h2}>Sign Up To The Free Newsletter</h2>
         <h2 className={styles.newsletter_container_h2}>501-288-2488</h2>
       </div>
-
-
-
-
-
-
-
-{/*       <main className={styles.main}>
-         <LOGO_BLACK className={styles.main_logo}></LOGO_BLACK>
-        <h1 className={styles.title}><span className={styles.titleColor}>Make your Home Smarter with AI Wall Decor!</span></h1>
-        <p className={styles.description}>
-        </p>
-        <span></span>
-        <Link href="/generate">
-          <button className={styles.btn_neu}>
-          Create</button>
-        </Link>
-      </main> */}
     </div>
+
   );
 }

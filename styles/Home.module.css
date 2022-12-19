@@ -5,7 +5,7 @@
   padding-right: 2rem; */
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -200,7 +200,7 @@
 }
 
 /*-----------back button----------------*/
-.back_neu {
+/* .back_neu {
   border-radius: 50%;
   background: #e0e0e0;
   box-shadow:  10px 10px 20px #bebebe,
@@ -270,7 +270,7 @@
     width: 40px;
     margin-bottom: 60vh;
   }
-}
+} */
 
 
 
@@ -296,7 +296,7 @@
   display: flex;
   flex-direction: column;
   background-color: rgb(56, 56, 56);
-  width: 100vw;
+  width: 100%;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -333,6 +333,11 @@
   margin-right: 10px;
   margin-left: 10px;
   color: #e0e0e0;
+  cursor: pointer;
+}
+
+.main_container_button:hover {
+  transform:scale(1.05)
 }
 
 
@@ -354,7 +359,7 @@
   position: relative;
   top: -100px; 
   z-index: 2;
-  width: 100vw;
+  width: 100%;
 }
 
 .main_grid_card {
@@ -412,7 +417,7 @@
   height: 90vw;
   max-width: 500px;
   max-height: 500px;
-}
+} 
 
 .second_container_list_svg {
   width: 50px;
@@ -491,6 +496,11 @@
   color: #e0e0e0;
   font-size: large;
   margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.second_container_button:hover {
+  transform:scale(1.05)
 }
 
 
@@ -501,7 +511,7 @@
   width: 25vw;
   height: 25vw;
   margin-top: 50px
-}
+} 
 
 .newsletter_container {
   display: flex;
@@ -509,7 +519,7 @@
   justify-content: center;
   align-items: center;
   background-color: rgb(56, 56, 56);
-  width: 100vw
+  width: 100%
 }
 
 .newsletter_container_h1 {
@@ -559,6 +569,11 @@
   position: relative;
   right: 50px;
   font-size: medium;
+  cursor: pointer;
+}
+
+.newsletter_input_button:hover {
+  transform:scale(1.05)
 }
 
 .newsletter_container_h2 {
