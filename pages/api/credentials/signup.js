@@ -43,7 +43,8 @@ export default async (req, res) => {
                 {email: newData.email},
                 {
                     $set: {email: newData.email,
-                            name: newName}
+                            name: newName,
+                            date: currentDate}
                 },
                 {
                     upsert: true

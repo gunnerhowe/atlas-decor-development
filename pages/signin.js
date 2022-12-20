@@ -29,6 +29,34 @@ export default function SignInPage({ providers }) {
   }
 
 
+  const addFree = async () => {
+    const name = (session.user.name);
+    const updateData = await axios.post('/api/credentials/addFree',{
+      email: session.user.email
+    });
+  }
+
+  const addUser = async () => {
+    const name = (session.user.name);
+    const updateData = await axios.post('/api/credentials/signup',{
+      name: name,
+      email: session.user.email
+    });
+  }
+
+  const checkEmail = async () => {
+    const updateData = await axios.post('/api/credentials/checkEmail',{
+      email: session.user.email
+    });
+
+    if (!updateData.data) {
+      addUser();
+      addFree();
+    } else {
+      return;
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Head>

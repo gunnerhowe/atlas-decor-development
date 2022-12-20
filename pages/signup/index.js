@@ -7,7 +7,7 @@ import OUT from '../gallery/images/sign_out.svg';
 import CHECK from '../gallery/images/check.svg';
 import GOOGLE from '../gallery/images/Google.svg';
 import FACEBOOK from '../gallery/images/Facebook.svg';
-import { getProviders, signIn, getSession, useSession } from "next-auth/react";
+import { getProviders, signIn, signOut, getSession, useSession } from "next-auth/react";
 
 export default function Home() {
   const { data: session, status} = useSession();
@@ -77,6 +77,7 @@ export default function Home() {
         <h1 className={styles.title}><span className={styles.titleColor}>Signup</span></h1>
         <p className={styles.description}>
           <input
+            className={styles.input_style}
             id="firstname"
             type="text"
             placeholder="First Name"
@@ -85,6 +86,7 @@ export default function Home() {
         </p>
         <p className={styles.description}>
           <input
+            className={styles.input_style}
             id="lastname"
             type="text"
             placeholder="Last Name"
@@ -94,6 +96,7 @@ export default function Home() {
         <p className={styles.description}>
           <input
             id="email"
+            className={styles.input_style}
             type="text"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
@@ -102,6 +105,7 @@ export default function Home() {
         <p className={styles.description}>
           <input
             id="password"
+            className={styles.input_style}
             type="password"
             placeholder="Password"
             onChange={(e) => setpassWord(e.target.value)}
@@ -110,6 +114,7 @@ export default function Home() {
         <p className={styles.description}>
           <input
             id="password_confirm"
+            className={styles.input_style}
             type="password"
             placeholder="Confirm Password"
             onChange={(e) => setCpassWord(e.target.value)}

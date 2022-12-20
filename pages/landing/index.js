@@ -22,7 +22,8 @@ import FACEBOOK from '../gallery/images/Facebook.svg';
 
 import CONFETTI from '../gallery/images/confetti.svg'
 
-export default function Landing() {
+export default function Landing({providers}) {
+    const { data: session, status} = useSession();
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [email, setEmail] = useState("");
@@ -35,14 +36,41 @@ export default function Landing() {
     const [blankBlank, setblankBlank] = useState(false);
     const [showCar, setShowCar] = useState(false);
 
-    const addUser = async () => {
+    const addFree = async () => {
         const name = (firstName + ' ' + lastName);
+
+        const updateData = await axios.post('/api/credentials/addFree',{
+          email: email
+        });
+      }
+
+      const addUser = async () => {
+        if (session) {
+            const name1 = session.user.name;
+            setEmail(session.user.email);
+        } else {
+            const name1 = (firstName + ' ' + lastName);
+        }
         const updateData = await axios.post('/api/credentials/signup',{
-          name: name,
+          name: name1,
           email: email,
           password: passWord
         });
-        setSuccess(true)
+        setSuccess(true);
+        addFree();
+      }
+    
+      const checkEmail = async () => {
+        const updateData = await axios.post('/api/credentials/checkEmail',{
+          email: session.user.email
+        });
+    
+        if (!updateData.data) {
+          addUser();
+          addFree();
+        } else {
+          return;
+        }
       }
 
     const loadIt = async () => {
@@ -68,11 +96,6 @@ export default function Landing() {
           setpassError(false);
           setEmailError(false);
           setblankBlank(false);
-        } else if (updateData.data.email == email && !updateData.data.password) {
-          addUser();
-          setpassError(false);
-          setEmailError(false);
-          setblankBlank(false);
         } else if (updateData.data.email == email && updateData.data.password) {
           setEmailError(true);
           setpassError(false);
@@ -80,16 +103,16 @@ export default function Landing() {
         }
       }
 
-//ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
-  
 
 
   return (
     <div className={styles.container}>
-    <Head>
-        <title>Panda Prints</title>
-    </Head>
+        <Head>
+            <title>Panda Prints</title>
+        </Head>
         <main className={styles.main}>
+        {!session && (
+            <>
             <div className={styles.logo_over}>
                 <LOGO_BLACK className={styles.logo_overlay}></LOGO_BLACK>
                 <div className={styles.header_section}>
@@ -140,7 +163,7 @@ export default function Landing() {
                     <div className={styles.carousel_image}>
                         <img src="https://atlastattoo.s3.amazonaws.com/image56.png"/>
                     </div>
-{/*                     <div className={styles.carousel_image}>
+                    <div className={styles.carousel_image}>
                         <img src="https://atlastattoo.s3.amazonaws.com/image57.png"/>
                     </div>
                     <div className={styles.carousel_image}>
@@ -208,7 +231,7 @@ export default function Landing() {
                     </div>
                     <div className={styles.carousel_image}>
                         <img src="https://atlastattoo.s3.amazonaws.com/DALL%C2%B7E+2022-10-06+18.34.10+-+abstract+art%2C+black+and+white.png"/>
-                    </div> */}
+                    </div>
                 </Carousel>
              </div> 
              <h2 className={styles.form_fill_header}>Sign Up and claim your 3 free credits</h2>
@@ -374,6 +397,16 @@ export default function Landing() {
                     <CONFETTI className={styles.confetti}></CONFETTI>
                 </div>
             </div>
+            </>
+        )}
+        {session && (
+            <div className={styles.getStarted_container}>
+                <h1>Congradulations! 3 free credits have been added to your new account</h1>
+                <Link href='/'>
+                    <button className={styles.enter_site} onClick={checkEmail()}>Get Started</button>
+                </Link>
+            </div>
+        )}
         </main>
     </div>
   );
